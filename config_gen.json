@@ -1,0 +1,29 @@
+{
+  "prepare_data": {
+    "train_path": "./natural_questions/simplified_simplified-nq-train.jsonl.gz",
+    "dev_path": "./natural_questions/simplified_nq-dev-all.jsonl.gz",
+    "counterfactual_path_pattern": "./ml-knowledge-conflicts/datasets/substitution-sets/NaturalQuestions{}_{}.jsonl"
+  },
+  "query_model": {
+    "results_dir": "eval_result_bin/bin",
+    "model_name": "t5-base",
+    "input_max_length": 256,
+    "output_max_length": 32,
+    "repetition_penalty": 2.5,
+    "length_penalty": 1,
+    "num_beams": 1,
+    "batch_size": 1
+  },
+  "fine_tune": {
+    "checkpoints_dirpath": "results/t5_rag_results/training_score/n_10/t5-small_lr0.000075_seq_label",
+    "wandb_api_key": "dfab07a16ef4293fc4ea6fcbea1b722ece2050fc",
+    "retriever_model_name": "facebook/dpr-question_encoder-single-nq-base",
+    "reader_model_name": "google/flan-t5-large",
+    "dataset_name": "nq",
+    "batch_size": 2,
+    "learning_rate": 0.0001,
+    "n_epochs": 60,
+    "source_max_token_len": 256,
+    "target_max_token_len": 25
+  }
+}
