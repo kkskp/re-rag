@@ -1,7 +1,7 @@
 {
-  "query_model": {
-    "results_dir": "eval_result_mode_eval/qc_t5small_trained",
-    "model_name": "t5-base",
+  "evaluation": {
+    "results_dir": "<<PATH>>",
+    "model_name": "t5-large",
     "input_max_length": 256,
     "output_max_length": 5,
     "repetition_penalty": 2.5,
@@ -11,10 +11,10 @@
     "learning_rate": 0.0001,
     "coef": 1
   },
-  "fine_tune": {
-    "checkpoints_dirpath": "results/qc_flant5s_warm_v06_half_0.5_0.0001",
-    "wandb_api_key": "dfab07a16ef4293fc4ea6fcbea1b722ece2050fc",
-    "model_name": "google/flan-t5-large",
+  "training": {
+    "checkpoints_dirpath": "<<PATH>>",
+    "wandb_api_key": "<<Wandb_key>>",
+    "model_name": "t5-large",
     "dataset_name": "_qc_warmup_dataset.json",
     "batch_size": 32,
     "learning_rate": 0.00005,

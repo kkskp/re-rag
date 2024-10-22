@@ -182,38 +182,39 @@ if __name__ == '__main__':
     ########################## build arguments and main config ##########################
     
     f = open(os.getcwd() + "/config_gen.json")
-    config = json.load(f)["fine_tune"]
+    config = json.load(f)["training"]
     f = open(os.getcwd() + "/config_gen.json")
-    config_query = json.load(f)["query_model"]
+    config_query = json.load(f)["evaluation"]
     f = open(os.getcwd() + "/config_re.json")
-    qe_config = json.load(f)["fine_tune"]
+    qe_config = json.load(f)["training"]
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", type=str, required=True,
                         default="./dataset/",
-                        help="data path prefix for test data")
+                        help="Data path prefix for test data")
     parser.add_argument("--model", type=str, required=False,
                         default="empty",
-                        help="data path prefix for test data")
+                        help="Trained model path")
     parser.add_argument("--checkpoint_name", type=str, required=True,
-                        help="data path prefix for test data")
+                        help="Enter your checkpoint name. The name entered is used as the output filename")
     parser.add_argument("--score_option", type=str, required=True,
-                        help="label or dpr or qc or qc_cal")
+                        default="qc_cal",
+                        help="The default setting is qc_cal, from which the score is calculated by the RE module. For other score usage, set it to custom.")
     parser.add_argument("--top_n", type=int, required=False,
                         default=100,
-                        help="choose score option when traning and inference")
+                        help="Enter the total number of contexts in the test dataset")
     parser.add_argument("--top_k", type=int, required=False,
                         default=25,
-                        help="choose score option when traning and inference")
+                        help="Enter the number of top-k contexts to use")
     parser.add_argument("--qe_model", type=str, required=False,
                         default="empty",
-                        help="choose qe model option")
+                        help="Choose RE model option, use default option")
     parser.add_argument("--select_column", type=str, required=False,
-                        default="empty",
-                        help="choose ctxs, ctxs_5, ctxs_10, ctxs_20, ctxs_25, ctxs_50")
+                        default="ctxs",
+                        help="Choose ctxs, ctxs_5, ctxs_10, ctxs_20, ctxs_25, ctxs_50")
     parser.add_argument("--eval_partition", type=int, required=False,
                         default=0,
-                        help="divide eval inference, give number 0 ~ 3")
+                        help="Divide eval inference, give number 0 ~ 3")
     args = parser.parse_args()
     
 

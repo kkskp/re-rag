@@ -491,9 +491,9 @@ def fine_tune(train_df, val_df, tokenizer, module, model, source_max_token_len, 
 if __name__ == '__main__':
         
     f = open(os.getcwd() + "/config_gen.json")
-    config = json.load(f)["fine_tune"]
+    config = json.load(f)["training"]
     f = open(os.getcwd() + "/config_re.json")
-    qe_config = json.load(f)["fine_tune"]
+    qe_config = json.load(f)["training"]
     os.environ["WANDB_API_KEY"] = config["wandb_api_key"]
 
     parser = argparse.ArgumentParser()
@@ -503,25 +503,25 @@ if __name__ == '__main__':
     parser.add_argument("--wandb_name", type=str, required=True, help="wandb_project name")
     parser.add_argument("--model", type=str, required=False,
                         default="empty",
-                        help="if you have finetuning model, then put trained model path")
+                        help="If you have trained model, then put trained model path")
     parser.add_argument("--qe_model", type=str, required=False,
                         default="empty",
-                        help="if you have qe model, then put trained qe model path")    
+                        help="If you have pretrained RE model, then put trained qe model path. Use default settings by default")    
     parser.add_argument("--score", type=str, required=False,
                         default="label",
-                        help="choose score option when traning and inference")
+                        help="You will only utilize this option if you are not using RE modules. This option is not automatically utilized when training RE modules (does not utilize any prior scores).")
     parser.add_argument("--top_n", type=int, required=False,
                         default=20,
-                        help="choose score option when traning and inference")
+                        help="Enter the total number of contexts in the test dataset")
     parser.add_argument("--checkpoints_dirpath", type=str, required=False,
                         default="results/",
-                        help="choose score option when traning and inference")
+                        help="Enter the path where the results are saved")
     parser.add_argument("--loss_option", type=str, required=False,
-                        default="no",
+                        default="yes",
                         help="if you want prob contraint loss set this value yes")
     parser.add_argument("--loss_weight", type=float, required=False,
                         default=1,
-                        help="hyperparameter of addtional loss")
+                        help="hyperparameter of addtional loss(alpha 1)")
     args = parser.parse_args()
     
     wandb_logger = WandbLogger(project=args.wandb_name)
