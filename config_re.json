@@ -15,7 +15,6 @@
     "checkpoints_dirpath": "<<PATH>>",
     "wandb_api_key": "<<Wandb_key>>",
     "model_name": "t5-large",
-    "dataset_name": "_qc_warmup_dataset.json",
     "batch_size": 32,
     "learning_rate": 0.00005,
     "n_epochs": 4,

@@ -10,7 +10,7 @@
     "batch_size": 1
   },
   "training": {
-    "checkpoints_dirpath": "results/t5_rag_results/training_score/n_10/t5-small_lr0.000075_seq_label",
+    "checkpoints_dirpath": "<<no need to input>>",
     "wandb_api_key": "<<Wandb_key>>",
     "retriever_model_name": "facebook/dpr-question_encoder-single-nq-base",
     "reader_model_name": "t5-large",
